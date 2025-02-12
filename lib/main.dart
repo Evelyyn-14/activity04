@@ -1,6 +1,8 @@
 //Myla Newby and Evelyn Escobedo
 
 import 'package:flutter/material.dart';
+TextEditingController text1 = TextEditingController();
+
 
 void main() {
   runApp(const MyApp());
@@ -31,6 +33,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
   late AnimationController motionController;
   late Animation motionAnimation;
+  String _message = "Happy Valentine's Day!";
+  int count = 0; 
+
+  void _setMessage() {
+    setState(() {
+      _message = text1.text;
+    });}
 
   double size = 20;
   void initState(){
@@ -88,9 +97,25 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
             Center(
               child: Container(
                 child: Stack(children: <Widget>[
+                  TextField(
+                          obscureText: false,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Input Your Message',
+                          ),
+                          controller: text1,
+                        ),
+                        Text(
+                          '\n$_message',
+                        ),
+                        ElevatedButton(
+                          onPressed: _setMessage,
+                          child: const Text('Set Message'),
+                        ),
                   Center(
                     child: Container(
                       child: Stack(children: <Widget>[
+                        
                         Center(
                           child: new Container(
                             child: Image.asset('assets/images/heart.jpg'),
