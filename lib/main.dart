@@ -1,3 +1,5 @@
+//Myla Newby and Evelyn Escobedo
+
 import 'package:flutter/material.dart';
 TextEditingController text1 = TextEditingController();
 
@@ -13,39 +15,25 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      theme: ThemeData.dark(),
+      home: const MyHomePage(title: 'Flutter Animation'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
   final String title;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+<<<<<<< Updated upstream
 class _MyHomePageState extends State<MyHomePage> {
   //int _counter = 0;
   String _message = "Happy Valentine's Day!";
@@ -63,32 +51,66 @@ class _MyHomePageState extends State<MyHomePage> {
   void _setMessage() {
     setState(() {
       _message = text1.text;
+=======
+class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
+  late AnimationController motionController;
+  late Animation motionAnimation;
+
+  double size = 20;
+  void initState(){
+    super.initState();
+  
+  
+    motionController = AnimationController(
+      duration: Duration(seconds: 2), 
+      vsync: this, 
+      lowerBound:0.5
+    );
+
+    motionAnimation = CurvedAnimation(
+      parent: motionController, 
+      curve: Curves.ease
+    );
+  
+    motionController.forward();
+    motionController.addStatusListener((status){
+      setState(() {
+        if(status == AnimationStatus.completed){
+          motionController.reverse();
+        } 
+        else if (status == AnimationStatus.dismissed){
+          motionController.forward();
+        }
+      });
+>>>>>>> Stashed changes
     });
+
+    motionController.addListener((){
+      setState(() {
+        size = motionController.value * 250;
+      });
+    });
+    //motionController.repeat();
   }
+  
+  @override
+  void dispose(){
+    motionController.dispose();
+    super.dispose();
+  }
+  
 
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
+        centerTitle: true,
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
+<<<<<<< Updated upstream
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             TextField(
@@ -114,6 +136,30 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),*/ // This trailing comma makes auto-formatting nicer for build methods.
+=======
+          children: <Widget>[
+            Center(
+              child: Container(
+                child: Stack(children: <Widget>[
+                  Center(
+                    child: Container(
+                      child: Stack(children: <Widget>[
+                        Center(
+                          child: new Container(
+                            child: Image.asset('assets/images/heart.jpg'),
+                            height: size,
+                          ),
+                        ),
+                      ]),
+                    ),
+                  ),
+                ]),
+              ),
+            )
+          ],
+        ),
+      ),
+>>>>>>> Stashed changes
     );
   }
 }
