@@ -1,7 +1,6 @@
 //Myla Newby and Evelyn Escobedo
 
 import 'package:flutter/material.dart';
-TextEditingController text1 = TextEditingController();
 
 void main() {
   runApp(const MyApp());
@@ -23,35 +22,12 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
   final String title;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-<<<<<<< Updated upstream
-class _MyHomePageState extends State<MyHomePage> {
-  //int _counter = 0;
-  String _message = "Happy Valentine's Day!";
-
-  /*void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });}*/
-
-  void _setMessage() {
-    setState(() {
-      _message = text1.text;
-=======
 class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
   late AnimationController motionController;
   late Animation motionAnimation;
@@ -82,7 +58,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
           motionController.forward();
         }
       });
->>>>>>> Stashed changes
     });
 
     motionController.addListener((){
@@ -100,7 +75,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
   }
   
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,33 +84,6 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
       ),
       body: Center(
         child: Column(
-<<<<<<< Updated upstream
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-              obscureText: false,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Input Your Message',
-              ),
-              controller: text1,
-            ),
-            Text(
-              '\n$_message',
-            ),
-            ElevatedButton(
-              onPressed: _setMessage,
-              child: const Text('Set Message'),
-            ),
-          ],
-        ),
-      ),
-      /*floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),*/ // This trailing comma makes auto-formatting nicer for build methods.
-=======
           children: <Widget>[
             Center(
               child: Container(
@@ -159,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin{
           ],
         ),
       ),
->>>>>>> Stashed changes
     );
   }
 }
+
